@@ -11,11 +11,13 @@ import UIKit
 class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     var pageController: UIPageViewController!
     var controllers = [UIViewController]()
-    var imageNames: [UIImage] = [
-        UIImage(named: "cup")!,
-        UIImage(named: "open")!
+    let imageNames = [
+        UIImage(named: "open")!,
+        UIImage(named: "cup")!
     ]
-  
+    
+    //var imageNames = ["cup", "open"]
+    var testImages: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +36,16 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
        
       
         //Append images to book
-        for _ in 1 ... 5 {
+        for image in imageNames {
             
             let vc = UIViewController()
             vc.view.backgroundColor = randomColor()
-            let imageView = UIImageView(image: UIImage(named: "open"))
+            let imageView  = UIImageView(image: image)
             vc.view.addSubview(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
             let subViews = ["imageView": imageView] as [String: AnyObject]
-            vc.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: subViews))
-            vc.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]|", options: [], metrics: nil, views: subViews))
+           vc.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: subViews))
+           vc.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]|", options: [], metrics: nil, views: subViews))
             
             controllers.append(vc)
         }
